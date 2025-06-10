@@ -135,16 +135,82 @@ summary::-webkit-details-marker {
     padding: 6px 12px;
 }
 
+/*Fim do Cabeçalho*/
+
+/*Pokedéx*/
+
+.cards {
+    margin-top: 20px;
+}
+
+.card {
+    padding: 15px;
+}
+
+.card img {
+    margin-bottom: 12px;
+}
+
+.number-pokedex {
+    margin-bottom: 8px;
+}
+
+.about_us {
+    margin: 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.canais {
+    margin: 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.pokedex {
+    margin: 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.tela {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.search-input {
+    padding: 8px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.procurar {
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.type{
+    padding: 2px 5px;
+}
 
 /*Responsividade*/
+
+@media screen and (max-width: 768px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 @media screen and (max-width: 520px) {
     .chatbot-popup .chat-header {
         padding: 12px 15px;
     }
+
     .chat-body {
         padding: 25px 15px;
     }
+
     .chat-footer {
         padding: 10px 15px 15px;
     }

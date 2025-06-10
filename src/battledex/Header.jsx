@@ -5,7 +5,7 @@ import HeaderResponsive from '../components/HeaderResponsive';
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const navbar = ["Pokedéx", "Treinamentos", "Canais", "Sobre"];
+    const navbar = ["Pokedéx", "Canais", "Sobre"];
     const languages = ["🇧🇷 Português", "🇺🇸 English", "🇪🇸 Español", "🇯🇵 日本語", "🇫🇷 Français", "🇨🇳 普通话"];
 
     const toggleMenu = () => setMenuOpen(prev => !prev);

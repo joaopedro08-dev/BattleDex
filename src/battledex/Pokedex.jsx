@@ -1,43 +1,66 @@
-function Pokedex() {
-    return (
-        <div className="container">
-            <div className="header-title">
-                <h2 className="title">Pokédex</h2>
-            </div>
-            <div className="form-pokemon">
-                <form action="#">
-                    <div className="header-form-search">
-                        <div className="form-group">
-                            <label>Nome do Pokémon</label>
-                            <input type="search" />
-                        </div>
-                        <button type="submit">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                    <button type="button">Aleatório</button>
-                    <div className="form-group">
-                        <label>Organizar</label>
-                        <select>
-                            <option value="" disabled selected>Selecione...</option>
-                            <option value="small">Menor número primeiro</option>
-                            <option value="big">Maior número primeiro</option>
-                            <option value="az">A-Z</option>
-                            <option value="za">Z-A</option>
-                        </select>
-                    </div>
-                </form>
-                <div className="cards">
-                    <div className="card">
-                        <div className="card-image"></div>
-                        <div className="card-content"></div>
-                    </div>
+import { useRef, useState } from "react";
+import CardPokedex from "../components/CardPokedex";
 
-                    <button type="button">Carregar mais Pokémon</button>
-                </div>
-            </div>
+function Pokedex() {
+  const inputSearch = useRef(null);
+  const [pokemonData, setPokemonData] = useState(null);
+  const [error, setError] = useState("");
+
+  const searchPokemon = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    const pokemonName = inputSearch.current.value.toLowerCase();
+    if (!pokemonName) {
+      setError("Digite o nome de um Pokémon!");
+      return;
+    }
+
+    const API_URL = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
+
+    try {
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error("Pokémon não encontrado!");
+      }
+
+      const data = await response.json();
+      setPokemonData(data);
+    } catch (error) {
+      setPokemonData(null);
+      setError(error.message);
+    }
+  };
+
+  return (
+    <div className="pokedex bg-[var(--color-red)] border-8 border-solid border-[--color-black] rounded-[15px] shadow max-w-[40%] w-full ">
+      <h1 className="text-center font-bold text-4xl text-white">Pokédex</h1>
+      <div className="tela bg-white border-4 border-solid border-[#555] rounded-2xl text-center shadow-2xs w-[80%]">
+        <div className="">
+          <form onSubmit={searchPokemon}>
+            <input
+              type="search"
+              className="search-input border-2 border-solid border-[#ccc] rounded-[5px] w-[200px]"
+              placeholder="Digite um Pokémon..."
+              ref={inputSearch}
+            />
+            <button type="submit" className="procurar bg-[var(--color-black)] text-white border-none rounded-[5px] cursor-pointer">
+              Procurar
+            </button>
+          </form>
+
+          {error && <div className="text-red-500 font-medium">{error}</div>}
+
+          {pokemonData ? (
+            <CardPokedex pokemon={pokemonData} />
+          ) : (
+            <div className="placeholder-text">Digite um Pokémon</div>
+          )}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
 export default Pokedex;
