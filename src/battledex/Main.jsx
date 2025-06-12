@@ -9,17 +9,18 @@ function Main() {
         <main>
             <AnimatePresence mode="wait">
                 <motion.section
+                    id="aboutNav"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.5 }}
-                    id="sobre"
                     className="w-full block"
                 >
                     <About />
                 </motion.section>
 
                 <motion.section
+                    id="pokedexNav" 
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -30,6 +31,7 @@ function Main() {
                 </motion.section>
 
                 <motion.section
+                    id="channelsNav" 
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
