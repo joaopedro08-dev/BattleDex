@@ -19,36 +19,35 @@ function DexAI() {
     const chatBodyRef = useRef();
 
     const generateBotResponse = async (history) => {
-        const updateHistory = (text, isError = false) => {
-            setChatHistory(prev =>
-                [...prev.filter(msg => !msg.isThinking), { role: "model", text, isError }]
-            )
+            const updateHistory = (text, isError = false) => {
+                setChatHistory(prev => [...prev.filter(msg => msg.text !== "..."), { role: "model", text, isError }])
+            }
+    
+            history = history.map(({ role, text }) => ({ role, parts: [{ text }] }))
+    
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: history })
+            }
+    
+            try {
+                const response = await fetch(import.meta.env.VITE_API_URL, requestOptions);
+                const data = await response.json();
+    
+                if (!response.ok) throw new Error(data.error.message || "Algo deu errado");
+    
+                const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
+                updateHistory(apiResponseText)
+            } catch (error) {
+                updateHistory(error.message, true)
+            }
         }
-
-        history = history.map(({ role, text }) => ({ role, parts: [{ text }] }))
-
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents: history })
-        }
-
-        try {
-            const response = await fetch(import.meta.env.VITE_API_URL, requestOptions);
-            const data = await response.json();
-
-            if (!response.ok) throw new Error(data.error.message || "Algo deu errado");
-
-            const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
-            updateHistory(apiResponseText)
-        } catch (error) {
-            updateHistory(error.message, true)
-        }
-    }
-
-    useEffect(() => {
-        chatBodyRef.current.scrollTo({ top: chatBodyRef.current.scrollHeight, behavior: "smooth" })
-    }, [chatHistory])
+    
+        useEffect(() => {
+            chatBodyRef.current.scrollTo({ top: chatBodyRef.current.scrollHeight, behavior: "smooth" })
+        }, [chatHistory])
+    
 
     return (
         <div className={`container ${showChatbot ? 'show-chatbot' : ''}`}>

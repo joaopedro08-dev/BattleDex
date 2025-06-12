@@ -24,7 +24,7 @@ function Main() {
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    viewport={{ amount: 0.2 }}
+                    viewport={{ amount: 0.3 }}
                     className="w-full block"
                 >
                     <Pokedex />
@@ -35,7 +35,7 @@ function Main() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
-                    viewport={{ amount: 0.2, once: true }}
+                    viewport={{ amount: 0.2 }}
                     className="w-full block"
                 >
                     <Channels />

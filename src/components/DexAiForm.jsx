@@ -1,28 +1,25 @@
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"; 
 
-function DexAiForm({ chatHistory, setChatHistory, generateBotResponse }) {
+function DexAiForm({chatHistory, setChatHistory, generateBotResponse}) {
     const inputRef = useRef();
-    const { t } = useTranslation();
+    const { t } = useTranslation(); 
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const userMessage = inputRef.current.value.trim();
-        if (!userMessage) return;
+        if(!userMessage) return;
         inputRef.current.value = "";
 
-        setChatHistory((history) => [...history, { role: "model", text: t("thinkingMessage"), isThinking: true }]);
+        setChatHistory((history) => [...history, { role: "user", text: userMessage }]);
+        
+        setTimeout(()=>{
+            setChatHistory((history) => [...history, { role: "model", text: "..."}]);
 
-        setTimeout(() => {
-            setChatHistory((history) => [
-                ...history,
-                { role: "model", text: t("thinkingMessage"), isThinking: true }
-            ]);
-
-            generateBotResponse([...chatHistory, { role: "user", text: userMessage }]);
+            generateBotResponse([...chatHistory, { role: "user", text: userMessage}]);
         }, 600);
-
     }
+
     return (
         <form action="#" className="chat-form flex items-center bg-white outline-1 outline-solid outline-[#cccce5] rounded-4xl shadow-2xs focus-within:outline-2 focus-within:border-solid focus-within:outline-[var(--color-red)]" onSubmit={handleFormSubmit}>
             <input
