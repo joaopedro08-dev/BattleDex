@@ -15,7 +15,7 @@
     "mobileNavigation": "移动导航",
     "languages": "语言",
     "chatbotWelcomeMessage": "你好！今天我能帮你什么？",
-    "thinkingMessage": "思考中...",
+    "messagePlaceholder": "訊息...",
     "apiErrorMessageDefault": "生成回复时出现问题。",
     "errorMessagePrefix": "错误",
     "errorMessageConnect": "无法连接到聊天机器人。",

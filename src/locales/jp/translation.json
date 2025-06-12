@@ -15,7 +15,7 @@
     "mobileNavigation": "モバイルナビゲーション",
     "languages": "言語",
     "chatbotWelcomeMessage": "こんにちは！ 今日は何をお手伝いできますか？",
-    "thinkingMessage": "考え中...",
+    "messagePlaceholder": "メッセージ...",
     "apiErrorMessageDefault": "応答の生成中に問題が発生しました。",
     "errorMessagePrefix": "エラー",
     "errorMessageConnect": "チャットボットに接続できませんでした。",

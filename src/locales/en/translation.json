@@ -15,7 +15,7 @@
     "mobileNavigation": "Mobile navigation",
     "languages": "Languages",
     "chatbotWelcomeMessage": "Hello! How can I help you today?",
-    "thinkingMessage": "Thinking...",
+    "messagePlaceholder": "Message...",
     "apiErrorMessageDefault": "Something went wrong while generating the response.",
     "errorMessagePrefix": "Error",
     "errorMessageConnect": "Could not connect to the chatbot.",
