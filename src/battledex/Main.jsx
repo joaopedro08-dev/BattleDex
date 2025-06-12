@@ -8,35 +8,41 @@ function Main() {
     return (
         <main>
             <AnimatePresence mode="wait">
-                <section className="w-full block">
+                <motion.section
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ amount: 0.5 }}
+                    id="sobre"
+                    className="w-full block"
+                >
                     <About />
-                </section>
+                </motion.section>
 
                 <motion.section
-                    className="w-full block"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.2 }}
+                    className="w-full block"
                 >
                     <Pokedex />
                 </motion.section>
 
                 <motion.section
-                    className="w-full block"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
                     viewport={{ amount: 0.2, once: true }}
+                    className="w-full block"
                 >
                     <Channels />
                 </motion.section>
             </AnimatePresence>
 
             <SpeechSythesis />
-
         </main>
-    )
+    );
 }
 
 export default Main;

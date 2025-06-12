@@ -39,13 +39,13 @@ function Header() {
                             <button
                                 type='button'
                                 onClick={() => {
-                                    closeMenu(); // fecha o menu antes
+                                    closeMenu();
                                     setTimeout(() => {
                                         const section = document.getElementById(item.key);
                                         if (section) {
                                             section.scrollIntoView({ behavior: "smooth" });
                                         }
-                                    }, 100); // 100ms para garantir que a seção esteja no DOM
+                                    }, 100); 
                                 }}
 
                                 className='relative text-[var(--color-white)] font-medium text-base uppercase tracking-wider cursor-pointer
