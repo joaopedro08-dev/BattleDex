@@ -4,8 +4,10 @@ import DexAiconMsg from "./DexAiconMsg";
 import DexAiForm from "./DexAiForm"
 import DexAiMessage from "./DexAiMessage";
 import { companyInfo } from "../assets/service/companyinfo";
+import { useTranslation } from "react-i18next";
 
 function DexAI() {
+    const { t } = useTranslation();
     const [chatHistory, setChatHistory] = useState([
         {
             hideInChat: true,
@@ -18,7 +20,9 @@ function DexAI() {
 
     const generateBotResponse = async (history) => {
         const updateHistory = (text, isError = false) => {
-            setChatHistory(prev => [...prev.filter(msg => msg.text !== "Pensando..."), { role: "model", text, isError }])
+            setChatHistory(prev =>
+                [...prev.filter(msg => !msg.isThinking), { role: "model", text, isError }]
+            )
         }
 
         history = history.map(({ role, text }) => ({ role, parts: [{ text }] }))
@@ -66,7 +70,7 @@ function DexAI() {
                     <div className="message bot-message">
                         <DexAiconMsg />
                         <p className="message-text">
-                            Olá!<br />Em que posso ajudar você hoje?
+                            {t("greeting")}
                         </p>
                     </div>
 

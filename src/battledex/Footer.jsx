@@ -1,9 +1,11 @@
-function Footer() {
+import { useTranslation } from 'react-i18next';
 
+function Footer() {
+    const { t } = useTranslation();
     return (
-        <footer className="footer w-ful h-12 bg-[var(--color-red)] flex justify-between items-center">
-            <p className="text-white">&copy; 2025 BattleDex. Todos os direitos reservados. </p>
-            <p className="text-white">Desenvolvido por Gabriel Marcelo e João Pedro </p>
+        <footer className="footer w-full bg-[var(--color-red)] flex flex-col sm:flex-row justify-center sm:justify-between items-center text-white text-start sm:text-left">
+            <p>&copy; 2025 BattleDex. {t('allRightsReserved')} </p>
+            <p>{t('developedBy')}</p>
         </footer>
     )
 }
