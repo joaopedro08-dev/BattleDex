@@ -1,4 +1,4 @@
-# BattleDex - Accessibility Project 🌐
+# 🌐 BattleDex - Accessibility Project 
 
 <div align="left">
 
